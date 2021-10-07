@@ -1,0 +1,33 @@
+<!-- chat/templates/chat/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Chat Rooms</title>
+    {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+</head>
+
+<body style="background-image: url({% static 'chat/img/naruto.jpg' %});>
+    <h1 style="text-align:center; color:white">¿A qué sala de chat le gustaría ingresar?</h1>
+    <br>
+    <div class="container" style="text-align:center">
+        <input id="room-name-input" class="form-control-plaintext" type="text" size="100" style="color:black; background: white" placeholder="Escribe una sala para entrar al Chat"><br>
+        <input id="room-name-submit" class="btn btn-warning mb-3 m-1" type="button" value="Entrar al Chat">
+    </div>
+
+    <script>
+        document.querySelector('#room-name-input').focus();
+        document.querySelector('#room-name-input').onkeyup = function(e) {
+            if (e.keyCode === 13) {  // enter, return
+                document.querySelector('#room-name-submit').click();
+            }
+        };
+
+        document.querySelector('#room-name-submit').onclick = function(e) {
+            var roomName = document.querySelector('#room-name-input').value;
+            window.location.pathname = '/chat/' + roomName + '/';
+        };
+    </script>
+</body>
+</html>
